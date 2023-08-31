@@ -1,8 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import {AppContext} from '../../context/AppContextProvider';
-import {COLORS, FONTS, SIZES} from '../../constants';
+import {AppContext} from '../../../context/AppContextProvider';
+import {COLORS, FONTS, SIZES} from '../../../constants';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

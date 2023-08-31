@@ -9,13 +9,14 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import {COLORS, FONTS, SIZES, icons} from '../../constants';
+import {COLORS, FONTS, SIZES, icons} from '../../../constants';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {AppContext} from '../../context/AppContextProvider';
+import {AppContext} from '../../../context/AppContextProvider';
 import * as Animatable from 'react-native-animatable';
+import {UserContext} from '../../../context/UserContextProvider';
 const Home = ({navigation}) => {
   const {
     storeData,
@@ -26,53 +27,58 @@ const Home = ({navigation}) => {
     _deleteItem,
   } = useContext(AppContext);
 
+  const {userData} = useContext(UserContext);
+
   function renderHeader() {
     return (
-      <View
-        style={{
-          ...styles.headerContainer,
-        }}>
+      <View>
         <View
           style={{
-            width: 40,
+            ...styles.headerContainer,
           }}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="database"
-              size={35}
-              color={COLORS.secondary}
-            />
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-          }}>
-          <Text
+          <View
             style={{
-              ...FONTS.h2,
-              color: COLORS.primary,
-              fontWeight: 'bold',
+              width: 40,
             }}>
-            Home Page
-          </Text>
-        </View>
-        <View
-          style={{
-            width: 40,
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Cart');
+            <TouchableOpacity>
+              <MaterialCommunityIcons
+                name="database"
+                size={35}
+                color={COLORS.secondary}
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
             }}>
-            <Foundation
-              name="shopping-cart"
-              color={COLORS.secondary}
-              size={35}
-            />
-          </TouchableOpacity>
+            <Text
+              style={{
+                ...FONTS.h2,
+                color: COLORS.primary,
+                fontWeight: 'bold',
+              }}>
+              Home Page
+            </Text>
+          </View>
+          <View
+            style={{
+              width: 40,
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Cart');
+              }}>
+              <Foundation
+                name="shopping-cart"
+                color={COLORS.secondary}
+                size={35}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
+        <Text>Welcome Back {userData?.user_name}</Text>
       </View>
     );
   }

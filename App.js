@@ -5,8 +5,12 @@ import BottomTabs from './src/navigation/BottomTabs';
 import AppStack from './src/navigation/AppStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AppContext} from './src/context/AppContextProvider';
+import AuthStack from './src/navigation/AuthStack';
+import {UserContext} from './src/context/UserContextProvider';
 const App = () => {
   const {setData} = useContext(AppContext);
+  const {isLogged, changeUserData, changeIsLogged} = useContext(UserContext);
+
   const [splashTimer, setSplashTimer] = useState(true);
 
   useEffect(() => {
@@ -17,6 +21,14 @@ const App = () => {
   }, []);
 
   async function _getData() {
+    let userData = await AsyncStorage.getItem('userAccount');
+
+    if (userData != null) {
+      userData = JSON.parse(userData);
+      changeUserData(userData);
+      changeIsLogged();
+    }
+
     // let alldata = [
     //   {
     //     product_id: 1,
@@ -155,7 +167,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <AppStack />
+      {isLogged ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

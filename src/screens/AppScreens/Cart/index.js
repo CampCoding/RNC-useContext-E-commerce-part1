@@ -8,10 +8,9 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import {AppContext} from '../../context/AppContextProvider';
-import {COLORS, FONTS, SIZES} from '../../constants';
+import {AppContext} from '../../../context/AppContextProvider';
+import {COLORS, FONTS, SIZES} from '../../../constants';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
